@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="jumbotron">
+    <h1>Shyfti</h1>
+    <p class="lead">Welcome to the shyfti web site. Currently serving no purpose but to upload random code.</p>
+</div>
+
+<div class="row">
+    <div>
+        <h2>Definitely the best naruto opening out there.</h2>
+        <iframe width="956" height="538" src="https://www.youtube.com/embed/uCbpPfnfQ7U" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Prime number generator</h2>
+        <p>
+            Prime number generator
+        </p>
+        <p><a class="btn btn-default" href="{{ url_for('primenumbergenerator') }}">Learn more &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Awesome instagram profile</h2>
+        <p>Link below takes you to an awesome page</p>
+        <p><a class="btn btn-default" href="https://www.instagram.com/breadboykid" target="_blank">Click here &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Have you had your breakfast yet?</h2>
+        <p>Information on how to keep fit and healthy with your diet below.</p>
+        <p><a class="btn btn-default" href="https://www.youtube.com/watch?v=cgtxdMSCjZk" target="_blank">Learn more &raquo;</a></p>
+    </div>
+</div>
+
+{% endblock %}
