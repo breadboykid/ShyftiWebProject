@@ -80,6 +80,36 @@ def coronavirus():
         latestFigure=ShyftiWebProject.coronavirus.getCoronaDataArray()[-1]
     )
 
+@app.route('/thankyouforyourservice')
+def thankyouforyourservice():
+    """Renders the about page."""
+    return render_template(
+        'maxshrine.html',
+        title='Max Mcgregor Appreciation Society',
+        year=datetime.now().year,
+        message='Clap for Max every 8pm on a Monday...Thank you for your service '
+    )
+
+@app.route('/islington')
+def islington():
+    """Renders the about page."""
+    return render_template(
+        'jorbae.html',
+        title='Jorbae appreciation society',
+        year=datetime.now().year,
+        message='Thank you for your service.'
+    )
+
+@app.route('/ceptin')
+def ceptin():
+    """Renders the about page."""
+    return render_template(
+        'ceptin.html',
+        title='Thank you for your service',
+        year=datetime.now().year,
+        message='Let'' clap for Ceptin every Monday at 8pm to thank him for his service'
+    )
+
 
 @app.route('/coronacasesplotlinear.png')
 def plotCoronaCasesLinear():
