@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<div>
+    <div>
+        <h4>Latest UK Corona figures</h4>
+        <p>There are {{ latestFigure[1] }} confirmed cases in UK as of {{ latestFigure[0] }} - this is updated automatically.</p>
+    </div>
+
+    <br />
+    <br />
+
+    <div>
+        <h4 style="font-weight:bold">Confirmed COVID-19 cases in UK graph</h4>
+        <img src="/coronacasesplotlinear.png" alt="my plot" />
+        <img src="/coronacasesplotlog.png" alt="my plot" />
+    </div>
+</div>
+{% endblock %}

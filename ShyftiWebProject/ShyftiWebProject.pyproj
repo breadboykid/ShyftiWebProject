@@ -29,6 +29,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="runserver.py" />
+    <Compile Include="ShyftiWebProject\coronavirus.py" />
+    <Compile Include="ShyftiWebProject\primenumbergenerator.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ShyftiWebProject\__init__.py" />
     <Compile Include="ShyftiWebProject\views.py" />
   </ItemGroup>
@@ -66,7 +70,7 @@
     <Content Include="ShyftiWebProject\static\scripts\respond.min.js" />
     <Content Include="ShyftiWebProject\static\scripts\_references.js" />
     <Content Include="ShyftiWebProject\templates\about.html" />
-    <Content Include="ShyftiWebProject\templates\primenumbergenerator.html" />
+    <Content Include="ShyftiWebProject\templates\coronavirus.html" />
     <Content Include="ShyftiWebProject\templates\contact.html" />
     <Content Include="ShyftiWebProject\templates\index.html" />
     <Content Include="ShyftiWebProject\templates\layout.html" />

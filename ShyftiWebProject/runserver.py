@@ -5,6 +5,7 @@ This script runs the ShyftiWebProject application using a development server.
 from os import environ
 from ShyftiWebProject import app
 
+
 if __name__ == '__main__':
     HOST = environ.get('SERVER_HOST', 'localhost')
     try:
