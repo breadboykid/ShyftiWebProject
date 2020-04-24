@@ -2,18 +2,10 @@
 Routes and views for the flask application.
 """
 
-import io
-import random
-from flask import Response
 from datetime import datetime
 from flask import render_template
 from ShyftiWebProject import app
-import ShyftiWebProject.coronavirus
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
-import matplotlib.pyplot as plt
-from matplotlib import ticker
-import numpy as np
+import ShyftiWebProject.coronavirus as cr
 
 posts = [
     {
@@ -77,7 +69,7 @@ def coronavirus():
         title='Coronavirus (Covid-19) Information page',
         year=datetime.now().year,
         message='Useful information surround COVID-19',
-        latestFigure=ShyftiWebProject.coronavirus.getCoronaDataArray()[-1]
+        latestFigure=cr.getCoronaDataArray()[-1]
     )
 
 @app.route('/thankyouforyourservice')
@@ -110,60 +102,10 @@ def ceptin():
         message='Let'' clap for Ceptin every Monday at 8pm to thank him for his service'
     )
 
+@app.route('/coronacasesplotlog.png')
+def plotCoronaCasesLog():
+    return cr.getPlotImage(cr.PlotType.Logarithmic)
 
 @app.route('/coronacasesplotlinear.png')
 def plotCoronaCasesLinear():
-    fig = create_figurelinear()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
-
-@app.route('/coronacasesplotlog.png')
-def plotCoronaCasesLog():
-    fig = create_figurelog()
-    output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
-
-
-def create_figurelinear():
-    data = ShyftiWebProject.coronavirus.getCoronaDataArray()
-    xs = [i[0] for i in data]
-    ys = [i[1] for i in data]
-
-    fig = plt.figure()
-    ax= fig.add_subplot(1, 1, 1)
-    fig.autofmt_xdate() 
-
-    M = 10
-    xticks = ticker.MaxNLocator(M)
-
-    ax.xaxis.set_major_locator(xticks)
-    ax.set_title('Linear')
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Cases')
-
-    plt.plot(xs, ys)
-    return fig
-
-def create_figurelog():
-    data = ShyftiWebProject.coronavirus.getCoronaDataArray()
-    xs = [i[0] for i in data]
-    ys = [i[1] for i in data]
-
-    fig = plt.figure()
-    ax= fig.add_subplot(1, 1, 1)
-    fig.autofmt_xdate()
-    fig.suptitle('')
-
-    M = 10
-    xticks = ticker.MaxNLocator(M)
-    
-    ax.xaxis.set_major_locator(xticks)
-    ax.set_title('Logarithmic')
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Cases')
-    ax.set_yscale('log')
-
-    plt.plot(xs, ys, color='orange')
-    return fig
+    return cr.getPlotImage(cr.PlotType.Linear)
