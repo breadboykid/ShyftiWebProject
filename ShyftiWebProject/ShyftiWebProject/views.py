@@ -7,6 +7,7 @@ from flask import render_template
 from ShyftiWebProject import app
 from ShyftiWebProject.coronavirus import CoronaVirusUK
 from ShyftiWebProject.graph import PlotType
+from random import randint
 
 posts = [
     {
@@ -70,7 +71,8 @@ def coronavirus():
         title='Coronavirus (Covid-19) Information page',
         year=datetime.now().year,
         message='Useful information surround COVID-19',
-        latestFigure=CoronaVirusUK.getCoronaDataArray()[-1]
+        latestFigure=CoronaVirusUK.getCoronaDataArray()[-1],
+        nocache=randint(0, 100)
     )
 
 @app.route('/thankyouforyourservice')
