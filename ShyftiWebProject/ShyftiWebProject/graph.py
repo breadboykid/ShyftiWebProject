@@ -26,7 +26,8 @@ class Graph():
         xticks = ticker.MaxNLocator(M)
 
         ax.xaxis.set_major_locator(xticks)
-        ax.set_title('Linear')
+        ax.set_title(f"Linear - (From {xs[0]} to {xs[-1]})")
+
         ax.set_xlabel('Date')
         ax.set_ylabel('Cases')
 
@@ -46,7 +47,7 @@ class Graph():
         xticks = ticker.MaxNLocator(M)
     
         ax.xaxis.set_major_locator(xticks)
-        ax.set_title('Logarithmic')
+        ax.set_title(f"Logarithmic - (From {xs[0]} to {xs[-1]})")
         ax.set_xlabel('Date')
         ax.set_ylabel('Cases')
         ax.set_yscale('log')
