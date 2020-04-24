@@ -5,7 +5,8 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template
 from ShyftiWebProject import app
-import ShyftiWebProject.coronavirus as cr
+from ShyftiWebProject.coronavirus import CoronaVirusUK
+from ShyftiWebProject.graph import PlotType
 
 posts = [
     {
@@ -69,7 +70,7 @@ def coronavirus():
         title='Coronavirus (Covid-19) Information page',
         year=datetime.now().year,
         message='Useful information surround COVID-19',
-        latestFigure=cr.getCoronaDataArray()[-1]
+        latestFigure=CoronaVirusUK.getCoronaDataArray()[-1]
     )
 
 @app.route('/thankyouforyourservice')
@@ -104,8 +105,12 @@ def ceptin():
 
 @app.route('/coronacasesplotlog.png')
 def plotCoronaCasesLog():
-    return cr.getPlotImage(cr.PlotType.Logarithmic)
+    corona_virus_data = CoronaVirusUK.getCoronaDataArray()
+    corona_class = CoronaVirusUK(corona_virus_data)
+    return corona_class.getPlotImage(PlotType.Logarithmic)
 
 @app.route('/coronacasesplotlinear.png')
 def plotCoronaCasesLinear():
-    return cr.getPlotImage(cr.PlotType.Linear)
+    corona_virus_data = CoronaVirusUK.getCoronaDataArray()
+    corona_class = CoronaVirusUK(corona_virus_data)
+    return corona_class.getPlotImage(PlotType.Linear)
