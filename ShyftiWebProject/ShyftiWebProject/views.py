@@ -22,6 +22,9 @@ posts = [
     }    
 ]
 
+corona_virus_data = CoronaVirusUK.getCoronaDataArray()
+corona_class = CoronaVirusUK(corona_virus_data)
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -72,7 +75,7 @@ def coronavirus():
         year=datetime.now().year,
         message='Useful information surround COVID-19',
         latestFigure=CoronaVirusUK.getCoronaDataArray()[-1],
-        nocache=randint(0, 100)
+        nocache=datetime.now().day
     )
 
 @app.route('/thankyouforyourservice')
@@ -107,12 +110,12 @@ def ceptin():
 
 @app.route('/coronacasesplotlog.png')
 def plotCoronaCasesLog():
-    corona_virus_data = CoronaVirusUK.getCoronaDataArray()
-    corona_class = CoronaVirusUK(corona_virus_data)
     return corona_class.getPlotImage(PlotType.Logarithmic)
 
 @app.route('/coronacasesplotlinear.png')
 def plotCoronaCasesLinear():
-    corona_virus_data = CoronaVirusUK.getCoronaDataArray()
-    corona_class = CoronaVirusUK(corona_virus_data)
     return corona_class.getPlotImage(PlotType.Linear)
+
+@app.route('/coronacasesplotlastten.png')
+def plotCoronaCasesLastTen():
+    return corona_class.getLastFiveDaysPlotImage()

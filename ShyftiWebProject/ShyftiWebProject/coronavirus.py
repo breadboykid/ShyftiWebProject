@@ -12,6 +12,10 @@ class CoronaVirusUK():
     def getPlotImage(self, plotType = PlotType.NotSpecified): 
         graph = Graph(self.data)
         return graph.getPlotImage(plotType)
+
+    def getLastFiveDaysPlotImage(self): 
+        graph = Graph(self.data)
+        return graph.getLastFiveDaysPlotImage()
        
     @staticmethod
     def getCoronaDataArray():

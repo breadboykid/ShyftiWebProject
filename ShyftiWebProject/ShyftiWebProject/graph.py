@@ -34,6 +34,34 @@ class Graph():
         plt.plot(xs, ys)
         return fig
 
+    def create_figurelastten(self):
+        target_y = [i[1] for i in self.data[-11:]]
+        difference = []
+
+        for idx, val in enumerate(target_y[:-1]):
+            difference.append(target_y[idx + 1] - val)
+
+        xs = [i[0] for i in self.data[-10:]]
+        ys = difference
+
+
+        fig = plt.figure()
+        ax= fig.add_subplot(1, 1, 1)
+        fig.autofmt_xdate()
+
+        ax.set_title(f"Confirmed new cases in UK over last 10 days")
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Cases')
+
+        xlocs, xlabs = plt.xticks()
+        xlocs=[i+1 for i in range(0,10)]
+
+        for i, v in enumerate(ys):
+            plt.text(xlocs[i] - 1.4, v + 0.02, str(v))
+
+        plt.bar(xs, ys, color='blue')
+        return fig
+
     def create_figurelog(self):
         xs = [i[0] for i in self.data]
         ys = [i[1] for i in self.data]
@@ -61,6 +89,12 @@ class Graph():
         else:
             fig = self.create_figurelinear()
 
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+
+    def getLastFiveDaysPlotImage(self):
+        fig = self.create_figurelastten()
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')
