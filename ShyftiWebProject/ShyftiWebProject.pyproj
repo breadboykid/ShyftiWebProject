@@ -50,7 +50,6 @@
     <None Include="FolderProfile.pubxml" />
     <Content Include="requirements.txt" />
     <Content Include="ShyftiWebProject\static\content\bootstrap.css" />
-    <Content Include="ShyftiWebProject\static\content\bootstrap.min.css" />
     <Content Include="ShyftiWebProject\static\content\site.css" />
     <Content Include="ShyftiWebProject\static\fonts\glyphicons-halflings-regular.eot" />
     <Content Include="ShyftiWebProject\static\fonts\glyphicons-halflings-regular.svg" />
