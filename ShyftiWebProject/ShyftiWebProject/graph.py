@@ -57,9 +57,9 @@ class Graph():
 
     def getPlotImage(self, plotType = PlotType.NotSpecified):
         if(plotType == PlotType.Logarithmic):
-            fig = self.create_figurelinear()
-        else:
             fig = self.create_figurelog()
+        else:
+            fig = self.create_figurelinear()
 
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
