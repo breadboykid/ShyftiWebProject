@@ -29,7 +29,7 @@ class Graph():
         ax.set_title(f"Linear - (From {xs[0]} to {xs[-1]})")
 
         ax.set_xlabel('Date')
-        ax.set_ylabel('Cases')
+        ax.set_ylabel('Confirmed')
 
         plt.plot(xs, ys)
         return fig
@@ -51,7 +51,7 @@ class Graph():
 
         ax.set_title(f"Confirmed new cases in UK over last 10 days")
         ax.set_xlabel('Date')
-        ax.set_ylabel('Cases')
+        ax.set_ylabel('Confirmed')
 
         xlocs, xlabs = plt.xticks()
         xlocs=[i+1 for i in range(0,10)]
@@ -60,6 +60,34 @@ class Graph():
             plt.text(xlocs[i] - 1.4, v + 0.02, str(v))
 
         plt.bar(xs, ys, color='blue')
+        return fig
+
+    def create_figurelasttendeaths(self):
+        target_y = [i[2] for i in self.data[-11:]]
+        difference = []
+
+        for idx, val in enumerate(target_y[:-1]):
+            difference.append(target_y[idx + 1] - val)
+
+        xs = [i[0] for i in self.data[-10:]]
+        ys = difference
+
+
+        fig = plt.figure()
+        ax= fig.add_subplot(1, 1, 1)
+        fig.autofmt_xdate()
+
+        ax.set_title(f"Confirmed deaths in UK over last 10 days")
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Deaths')
+
+        xlocs, xlabs = plt.xticks()
+        xlocs=[i+1 for i in range(0,10)]
+
+        for i, v in enumerate(ys):
+            plt.text(xlocs[i] - 1.4, v + 0.02, str(v))
+
+        plt.bar(xs, ys, color='red')
         return fig
 
     def create_figurelog(self):
@@ -77,7 +105,7 @@ class Graph():
         ax.xaxis.set_major_locator(xticks)
         ax.set_title(f"Logarithmic - (From {xs[0]} to {xs[-1]})")
         ax.set_xlabel('Date')
-        ax.set_ylabel('Cases')
+        ax.set_ylabel('Confirmed')
         ax.set_yscale('log')
 
         plt.plot(xs, ys, color='orange')
@@ -93,8 +121,14 @@ class Graph():
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')
 
-    def getLastFiveDaysPlotImage(self):
+    def getLastTenDaysPlotImageConfirmed(self):
         fig = self.create_figurelastten()
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+    
+    def getLastTenDaysPlotImageDeaths(self):
+        fig = self.create_figurelasttendeaths()
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')

@@ -5,6 +5,10 @@ import dateutil.parser
 from ShyftiWebProject.graph import Graph
 from ShyftiWebProject.graph import PlotType
 
+class CoronaVirus:
+    def __init__(self, data):
+        self.countrty = data
+
 class CoronaVirusUK():
     def __init__(self, data):
         self.data = data
@@ -13,9 +17,13 @@ class CoronaVirusUK():
         graph = Graph(self.data)
         return graph.getPlotImage(plotType)
 
-    def getLastFiveDaysPlotImage(self): 
+    def getLastTenDaysPlotImageConfirmed(self): 
         graph = Graph(self.data)
-        return graph.getLastFiveDaysPlotImage()
+        return graph.getLastTenDaysPlotImageConfirmed()
+
+    def getLastTenDaysPlotImageDeaths(self): 
+        graph = Graph(self.data)
+        return graph.getLastTenDaysPlotImageDeaths()
        
     @staticmethod
     def getCoronaDataArray():
@@ -26,7 +34,7 @@ class CoronaVirusUK():
         for coronaDataItem in coronaData:
             parseDate = dateutil.parser.parse(coronaDataItem["date"])
 
-            formattedArray.insert(len(formattedArray), [parseDate.strftime('%d/%m/%Y'), coronaDataItem["cases"]])
+            formattedArray.insert(len(formattedArray), [parseDate.strftime('%d/%m/%Y'), coronaDataItem["confirmed"], coronaDataItem["deaths"], coronaDataItem["active"], coronaDataItem["recovered"]])
             idx += 1
 
         return formattedArray
@@ -47,7 +55,7 @@ class CoronaVirusUK():
     @staticmethod
     def getLatestCoronaInformationUKJson():
         dateTimeNow = CoronaVirusUK.formattedDateTimeNow()
-        return requests.get(f"https://api.covid19api.com/country/united-kingdom/status/confirmed?from=2020-03-01T00:00:00Z&to={dateTimeNow}").text
+        return requests.get(f"https://api.covid19api.com/country/united-kingdom?from=2020-03-01T00:00:00Z&to={dateTimeNow}").text
 
     @staticmethod
     def getCoronaData():
@@ -56,9 +64,12 @@ class CoronaVirusUK():
         coronaCaseList = []
 
         for coronaDayItem in castedJson:
-            coronaDetails = { "date": None, "cases":None}
+            coronaDetails = { "date": None, "confirmed":None, "deaths": 0}
             coronaDetails["date"] = coronaDayItem["Date"]
-            coronaDetails["cases"] = coronaDayItem["Cases"]
+            coronaDetails["confirmed"] = coronaDayItem["Confirmed"]
+            coronaDetails["deaths"] = coronaDayItem["Deaths"]
+            coronaDetails["recovered"] = coronaDayItem["Recovered"]
+            coronaDetails["active"] = coronaDayItem["Active"]
             coronaCaseList.append(coronaDetails)
 
         return coronaCaseList

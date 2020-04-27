@@ -7,8 +7,28 @@
 
 <div>
     <div>
-        <h4>Latest UK Corona figures</h4>
-        <p>There are {{ latestFigure[1] }} confirmed cases in UK as of {{ latestFigure[0] }} - this is updated automatically.</p>
+        <table id="coronaVirusInfoTable">
+            <thead>
+                <tr>
+                    <th>COVID-19 Latest Information</th>
+                    <th>Last Updated</th>
+                    <th>Confirmed</th>
+                    <th>Deaths</th>
+                    <th>Active</th>
+                    <th>Recovered</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="font-weight:bold;">UK</td>
+                    <td>{{ latestFigure[0] }}</td>
+                    <td>{{ latestFigure[1] }}</td>
+                    <td>{{ latestFigure[2] }}</td>
+                    <td>n/a</td>
+                    <td>n/a</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 
     <br />
@@ -16,7 +36,8 @@
 
     <div>
         <h4 style="font-weight:bold">Confirmed COVID-19 cases in UK graph</h4>
-        <img src="/coronacasesplotlastten.png?v={{ nocache }}" alt="my plot" class="auto-adjust-image" />
+        <img src="/coronacasesplotlasttenconfirmed.png?v={{ nocache }}" alt="my plot" class="auto-adjust-image" />
+        <img src="/coronacasesplotlasttendeaths.png?v={{ nocache }}" alt="my plot" class="auto-adjust-image" />
         <img src="/coronacasesplotlinear.png?v={{ nocache }}" alt="my plot" class="auto-adjust-image" />
         <img src="/coronacasesplotlog.png?v={{ nocache }}" alt="my plot" class="auto-adjust-image" />
     </div>
