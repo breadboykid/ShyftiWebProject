@@ -123,3 +123,14 @@ def plotCoronaCasesLastTen():
 @app.route('/coronacasesplotlasttendeaths.png')
 def plotCoronaCasesLastTenDeaths():
     return corona_class.getLastTenDaysPlotImageDeaths()
+
+@app.route('/leslieghey')
+def leslieghey():
+    """Renders the leslieghey page."""
+    return render_template(
+        'leslieghey.html',
+        title='leslieghey',
+        year=datetime.now().year,
+        message='Just random code upload here.',
+        posts=posts
+    )
