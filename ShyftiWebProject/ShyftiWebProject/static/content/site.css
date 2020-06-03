@@ -61,31 +61,3 @@ input[type="checkbox"].input-validation-error {
         width: 100%;
         height: 100%;
     }
-
-
-#coronaVirusInfoTable {
-    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-    #coronaVirusInfoTable td, #coronaVirusInfoTable th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-
-    #coronaVirusInfoTable tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    #coronaVirusInfoTable tr:hover {
-        background-color: #ddd;
-    }
-
-    #coronaVirusInfoTable th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #415165;
-        color: white;
-    }

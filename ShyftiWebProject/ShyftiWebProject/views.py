@@ -116,7 +116,7 @@ def plotCoronaCasesLog():
 def plotCoronaCasesLinear():
     return corona_class.getPlotImage(PlotType.Linear)
 
-@app.route('/coronacasesplotlasttenconfirmed.png')
+@app.route('/coronacasesplotlastten.png')
 def plotCoronaCasesLastTen():
     return corona_class.getLastTenDaysPlotImageConfirmed()
 
