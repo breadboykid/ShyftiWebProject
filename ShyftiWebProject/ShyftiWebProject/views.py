@@ -118,4 +118,4 @@ def plotCoronaCasesLinear():
 
 @app.route('/coronacasesplotlastten.png')
 def plotCoronaCasesLastTen():
-    return corona_class.getLastFiveDaysPlotImage()
+    return corona_class.getLastFiveDaysPlotImage()   
