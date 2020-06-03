@@ -98,3 +98,10 @@ class Graph():
         output = io.BytesIO()
         FigureCanvas(fig).print_png(output)
         return Response(output.getvalue(), mimetype='image/png')
+    
+    def getLastTenDaysPlotImageDeaths(self):
+        fig = self.create_figurelasttendeaths()
+        output = io.BytesIO()
+        FigureCanvas(fig).print_png(output)
+        return Response(output.getvalue(), mimetype='image/png')
+     
